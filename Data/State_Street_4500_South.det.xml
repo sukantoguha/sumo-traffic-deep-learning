@@ -1,0 +1,42 @@
+<additional>
+    <laneAreaDetector id="laneAreaDetector.E0" lane="gneE2_0" length="200" freq="100" pos="-200" file="laneAreaDetector.E0.xml"/>
+    <laneAreaDetector id="laneAreaDetector.E1" lane="gneE2_1" length="200" freq="100" pos="-200" file="laneAreaDetector.E1.xml"/>
+    <laneAreaDetector id="laneAreaDetector.E2" lane="gneE2_2" length="200" freq="100" pos="-200" file="laneAreaDetector.E2.xml"/>
+    <laneAreaDetector id="laneAreaDetector.E3" lane="gneE2_3" length="200" freq="100" pos="-200" file="laneAreaDetector.E3.xml"/>
+    <laneAreaDetector id="laneAreaDetector.E4" lane="gneE2_4" length="200" freq="100" pos="-200" file="laneAreaDetector.E4.xml"/>
+
+    <laneAreaDetector id="laneAreaDetector.W0" lane="gneE6_0" length="200" freq="100" pos="-200" file="laneAreaDetector.W0.xml"/>
+    <laneAreaDetector id="laneAreaDetector.W1" lane="gneE6_1" length="200" freq="100" pos="-200" file="laneAreaDetector.W1.xml"/>
+    <laneAreaDetector id="laneAreaDetector.W2" lane="gneE6_2" length="200" freq="100" pos="-200" file="laneAreaDetector.W2.xml"/>
+    <laneAreaDetector id="laneAreaDetector.W3" lane="gneE6_3" length="200" freq="100" pos="-200" file="laneAreaDetector.W3.xml"/>
+    <laneAreaDetector id="laneAreaDetector.W4" lane="gneE6_4" length="200" freq="100" pos="-200" file="laneAreaDetector.W4.xml"/>
+
+    <laneAreaDetector id="laneAreaDetector.N0" lane="gneE4_0" length="200" freq="100" pos="-200" file="laneAreaDetector.N0.xml"/>
+    <laneAreaDetector id="laneAreaDetector.N1" lane="gneE4_1" length="200" freq="100" pos="-200" file="laneAreaDetector.N1.xml"/>
+    <laneAreaDetector id="laneAreaDetector.N2" lane="gneE4_2" length="200" freq="100" pos="-200" file="laneAreaDetector.N2.xml"/>
+    <laneAreaDetector id="laneAreaDetector.N3" lane="gneE4_3" length="200" freq="100" pos="-200" file="laneAreaDetector.N3.xml"/>
+    <laneAreaDetector id="laneAreaDetector.N4" lane="gneE4_4" length="200" freq="100" pos="-200" file="laneAreaDetector.N4.xml"/>
+
+    <laneAreaDetector id="laneAreaDetector.S0" lane="gneE0_0" length="200" freq="100" pos="-200" file="laneAreaDetector.S0.xml"/>
+    <laneAreaDetector id="laneAreaDetector.S1" lane="gneE0_1" length="200" freq="100" pos="-200" file="laneAreaDetector.S1.xml"/>
+    <laneAreaDetector id="laneAreaDetector.S2" lane="gneE0_2" length="200" freq="100" pos="-200" file="laneAreaDetector.S2.xml"/>
+    <laneAreaDetector id="laneAreaDetector.S3" lane="gneE0_3" length="200" freq="100" pos="-200" file="laneAreaDetector.S3.xml"/>
+    <laneAreaDetector id="laneAreaDetector.S4" lane="gneE0_4" length="200" freq="100" pos="-200" file="laneAreaDetector.S4.xml"/>
+
+    <inductionLoop id="inductionLoop.E0" lane="gneE1_0" pos="5" freq="900" file="inductionLoop.E0.xml"/>
+    <inductionLoop id="inductionLoop.E1" lane="gneE1_1" pos="5" freq="900" file="inductionLoop.E1.xml"/>
+    <inductionLoop id="inductionLoop.E2" lane="gneE1_2" pos="5" freq="900" file="inductionLoop.E2.xml"/>
+
+    <inductionLoop id="inductionLoop.W0" lane="gneE5_0" pos="5" freq="900" file="inductionLoop.W0.xml"/>
+    <inductionLoop id="inductionLoop.W1" lane="gneE5_1" pos="5" freq="900" file="inductionLoop.W1.xml"/>
+    <inductionLoop id="inductionLoop.W2" lane="gneE5_2" pos="5" freq="900" file="inductionLoop.W2.xml"/>
+
+    <inductionLoop id="inductionLoop.S0" lane="gneE3_0" pos="5" freq="900" file="inductionLoop.S0.xml"/>
+    <inductionLoop id="inductionLoop.S1" lane="gneE3_1" pos="5" freq="900" file="inductionLoop.S1.xml"/>
+    <inductionLoop id="inductionLoop.S2" lane="gneE3_2" pos="5" freq="900" file="inductionLoop.S2.xml"/>
+
+    <inductionLoop id="inductionLoop.N0" lane="gneE7_0" pos="5" freq="900" file="inductionLoop.N0.xml"/>
+    <inductionLoop id="inductionLoop.N1" lane="gneE7_1" pos="5" freq="900" file="inductionLoop.N1.xml"/>
+    <inductionLoop id="inductionLoop.N2" lane="gneE7_2" pos="5" freq="900" file="inductionLoop.N2.xml"/>
+
+</additional>
