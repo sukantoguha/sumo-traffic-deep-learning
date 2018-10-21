@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import os
+import datetime
 def results():
 	in_file = open("tripinfo.xml","r")
 	contents = in_file.read()
@@ -21,7 +22,8 @@ def results():
 			a_w='w'
 		#change output file here
 		print("writing to the results.txt file")
-		fp = open("results.txt",a_w)
+		#fp = open("results_"+str(datetime.datetime.now().time())+".txt",a_w)
+		fp = open("results_1.txt",a_w)
 		fp.write(str(round(timeLoss_count/count_cars,5)))
 		fp.write("\n")
 

@@ -29,14 +29,14 @@ from LogicRL import LogicRL as RL
 
 left_policy = "protected" # Left turn phase policy from {protected, protected-permissive, split-protect-NS, split-protect-EW, unrestricted}
 #logic = Fixed(left_policy) # Left turn phase policy from {Fixed, Actuated, RL}. All must implement: get_phase(self, current_phases)
-logic = Actuated(left_policy)
+logic = Fixed(left_policy)
 if not issubclass(type(logic),Logic):
     raise ValueError('logic must be a sub class of Logic')
 
 data_interval = 300 # The time interval (seconds) for each line of data in the demand file. 5 minutes in UTDOT logs (https://udottraffic.utah.gov/ATSPM)
 right_on_red = True # Do we allow vehicles to turn right on red
 min_phase_time = 5 # the minimal time interval between signal change (including yellow phase)
-iter_run = 30
+iter_run = 31
 
 def vehicle_generator(time, demand): # time in seconds and demand as a list of entries from the demand file "State_Street_4500_South.txt"
 
@@ -152,7 +152,6 @@ def run():
                 #  7: Left. Southbound
 
                 # If no change is required for the current signal assignment then return -1 (instead of a list of int)
-                print("logic.get_phase")
                 next_phase = logic.get_phase(current_phase)
             if next_phase != -1:  # If a phase change is required
                 current_phase = next_phase  # chosen phases index
@@ -161,8 +160,8 @@ def run():
                 else:
                     yellow = True
                 last_phase_change = traci.simulation.getTime()
-            #if int(traci.simulation.getTime()) == 3020:  # Q#1
-            #    break
+            if int(traci.simulation.getTime()) == 3020:  # Q#1
+                break
         traci.simulationStep()
 
     traci.close()
@@ -189,8 +188,7 @@ if __name__ == "__main__":
     else:
         sumoBinary = checkBinary('sumo-gui')
 
-    ### For Fixed.py ####
-    '''
+    ### For Fixed.py ###
     for i in range(iter_run):
         sumoBinary= checkBinary('sumo')
         xmlparser.results()
@@ -199,15 +197,17 @@ if __name__ == "__main__":
         traci.start([sumoBinary, "-c", "Data/State_Street_4500_South.sumocfg", "--tripinfo-output",
                                     "tripinfo.xml"]) #,  "--time-to-teleport -1"
         run()
+        print("completed iteration ":+i)
 
     sum =0.0
     lines = [line.rstrip('\n') for line in open('results.txt')]
     for line in lines:
         sum+=float(line)
     sum=sum/iter_run
-    '''
+    print("sum : ", sum)
     #####################
 
+    '''
     ### Given code #### 
     sumoBinary= checkBinary('sumo')
     xmlparser.results()
@@ -216,4 +216,5 @@ if __name__ == "__main__":
     traci.start([sumoBinary, "-c", "Data/State_Street_4500_South.sumocfg", "--tripinfo-output",
                                     "tripinfo.xml"]) #,  "--time-to-teleport -1"
     run()
+    '''
     
