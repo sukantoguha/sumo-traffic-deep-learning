@@ -19,6 +19,8 @@ def results():
 			a_w = 'a'
 		else:
 			a_w='w'
+		#change output file here
+		print("writing to the results.txt file")
 		fp = open("results.txt",a_w)
 		fp.write(str(round(timeLoss_count/count_cars,5)))
 		fp.write("\n")

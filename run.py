@@ -7,6 +7,7 @@ import optparse
 import random
 import xmlparser
 
+
 # Set "SUMO_HOME" as environment variable
 #os.environ["SUMO_HOME"] = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 #print(os.environ["SUMO_HOME"])
@@ -26,15 +27,16 @@ from LogicFixed import LogicFixed as Fixed
 from LogicActuated import LogicActuated as Actuated
 from LogicRL import LogicRL as RL
 
-left_policy = "split-protect-EW" # Left turn phase policy from {protected, protected-permissive, split-protect-NS, split-protect-EW, unrestricted}
-logic = Fixed(left_policy) # Left turn phase policy from {Fixed, Actuated, RL}. All must implement: get_phase(self, current_phases)
+left_policy = "protected" # Left turn phase policy from {protected, protected-permissive, split-protect-NS, split-protect-EW, unrestricted}
+#logic = Fixed(left_policy) # Left turn phase policy from {Fixed, Actuated, RL}. All must implement: get_phase(self, current_phases)
+logic = Actuated(left_policy)
 if not issubclass(type(logic),Logic):
     raise ValueError('logic must be a sub class of Logic')
 
 data_interval = 300 # The time interval (seconds) for each line of data in the demand file. 5 minutes in UTDOT logs (https://udottraffic.utah.gov/ATSPM)
 right_on_red = True # Do we allow vehicles to turn right on red
 min_phase_time = 5 # the minimal time interval between signal change (including yellow phase)
-
+iter_run = 30
 
 def vehicle_generator(time, demand): # time in seconds and demand as a list of entries from the demand file "State_Street_4500_South.txt"
 
@@ -150,6 +152,7 @@ def run():
                 #  7: Left. Southbound
 
                 # If no change is required for the current signal assignment then return -1 (instead of a list of int)
+                print("logic.get_phase")
                 next_phase = logic.get_phase(current_phase)
             if next_phase != -1:  # If a phase change is required
                 current_phase = next_phase  # chosen phases index
@@ -158,6 +161,8 @@ def run():
                 else:
                     yellow = True
                 last_phase_change = traci.simulation.getTime()
+            #if int(traci.simulation.getTime()) == 3020:  # Q#1
+            #    break
         traci.simulationStep()
 
     traci.close()
@@ -174,6 +179,7 @@ def get_options():
 
 # this is the main entry point of this script
 if __name__ == "__main__":
+    print("inside main")
     options = get_options()
 
     # this script has been called from the command line. It will start sumo as a
@@ -182,6 +188,27 @@ if __name__ == "__main__":
         sumoBinary = checkBinary('sumo')
     else:
         sumoBinary = checkBinary('sumo-gui')
+
+    ### For Fixed.py ####
+    '''
+    for i in range(iter_run):
+        sumoBinary= checkBinary('sumo')
+        xmlparser.results()
+        # this is the normal way of using traci. sumo is started as a
+        # subprocess and then the python script connects and runs
+        traci.start([sumoBinary, "-c", "Data/State_Street_4500_South.sumocfg", "--tripinfo-output",
+                                    "tripinfo.xml"]) #,  "--time-to-teleport -1"
+        run()
+
+    sum =0.0
+    lines = [line.rstrip('\n') for line in open('results.txt')]
+    for line in lines:
+        sum+=float(line)
+    sum=sum/iter_run
+    '''
+    #####################
+
+    ### Given code #### 
     sumoBinary= checkBinary('sumo')
     xmlparser.results()
     # this is the normal way of using traci. sumo is started as a
@@ -189,3 +216,4 @@ if __name__ == "__main__":
     traci.start([sumoBinary, "-c", "Data/State_Street_4500_South.sumocfg", "--tripinfo-output",
                                     "tripinfo.xml"]) #,  "--time-to-teleport -1"
     run()
+    
